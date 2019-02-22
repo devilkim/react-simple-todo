@@ -11,17 +11,10 @@ export default class TodoList extends Component {
           this.props.todos.map((item, index) => (
             <TodoItem
               key={index} index={index} checked={item.checked} text={item.text}
-              onChangeTodoItem={this.props.onChangeTodoItem}
-              onClickRemoveButton={this.props.onClickRemoveButton}
               />
           ))
         }
       </ul>
     );
   }
-}
-
-TodoList.defaultProps = {
-  onChangeTodoItem: () => {},
-  onClickRemoveButton: () => {}
 }

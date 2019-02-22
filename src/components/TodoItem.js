@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TodoActions } from '../store/actionCreators';
 import '../App.css';
 
 export default class TodoItem extends Component {
@@ -7,20 +8,15 @@ export default class TodoItem extends Component {
       <li>
         <input type='checkbox'
           checked={this.props.checked}
-          onChange={() => {
-            this.props.onChangeTodoItem(this.props.index, !this.props.checked);
+          onChange={() => {          
+            TodoActions.checkTodo({index: this.props.index, checked: !this.props.checked});
           }}
           />
         {this.props.text}
         <button type='button' onClick={() => {
-          this.props.onClickRemoveButton(this.props.index);
+          TodoActions.removeTodo({index: this.props.index});
         }}>Remove</button>
       </li>
     );
   }
-}
-
-TodoItem.defaultProps = {
-  onChangeTodoItem: () => {},
-  onClickRemoveButton: () => {}
 }
