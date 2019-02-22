@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
-class App extends Component {
+import TodoInputArea from './components/TodoInputArea';
+
+export default class App extends Component {
   state = {
     todos: [
       {text: 'item1', checked: false},
@@ -39,10 +41,7 @@ class App extends Component {
     return (
       <div className='container'>
         <h1>React Simple Todo App</h1>
-        <div className='todo-input-text'>
-          <input type='text' ref='input_text' />
-          <button type='button' onClick={this.onClickAddButton.bind(this)}>Add</button>
-        </div>
+        <TodoInputArea onClickAddButton=(input_text) />
         <ul className='todo-list'>
           {
             this.state.todos.map((item, index) => (
@@ -61,5 +60,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
