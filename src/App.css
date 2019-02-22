@@ -1,0 +1,16 @@
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.container {
+  padding-left: 24px;
+}
+
+div.todo-input-text {
+  padding-bottom: 12px;
+}
+ul.todo-list {
+  
+}
