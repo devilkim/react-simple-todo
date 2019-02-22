@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import '../App.css';
 
 export default class TodoInputArea extends Component {
-
+  clearInputText() {
+    this.refs.inputText.value = '';
+  }
   render() {
     return (
       <div className='todo-input-text'>
-        <input type='text' ref='input_text' />
+        <input type='text' ref='inputText' />
         <button type='button' onClick={() => {
-          const input_text = this.refs.input_text.value;
-          this.props.onClickAddButton(input_text);
+          const inputText = this.refs.inputText.value;
+          this.props.onClickAddButton(inputText);
         }}>Add</button>
       </div>
     );
@@ -17,5 +19,5 @@ export default class TodoInputArea extends Component {
 }
 
 TodoInputArea.defaultProps = {
-  onClickAddButton: () => {}  
+  onClickAddButton: () => {}
 }
