@@ -1,50 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { TodoActions } from '../store/actionCreators';
 import '../App.css';
 
 import TodoInputArea from './TodoInputArea';
 import TodoList from './TodoList';
 
-export default class TodoApp extends Component {
-  state = {
-    todos: [
-      {text: 'item1', checked: false},
-      {text: 'item2', checked: false},
-      {text: 'item3', checked: false}
-    ]
-  }
-
-  addTodoItem(inputText) {
-    if (inputText === '') {
-      alert('You must write todo at least 1 character.');
-      return;
-    }
-    const array = [...this.state.todos, {text: inputText, checked: false}];
-    this.setState({todos: [...array]});
-    this.refs.todoInputArea.clearInputText();
-  }
-
-  changeTodoItem(index, checked) {
-    const array = [...this.state.todos];
-    array[index].checked = checked;
-    this.setState({todos: [...array]});
-  }
-
-  onClickRemoveButton(index) {
-    const array = [...this.state.todos];
-    array.splice(index, 1);
-    this.setState({todos: [...array]});
-  }
-
+class TodoApp extends Component {
   render() {
     return (
       <div className='container'>
         <h1>{this.props.title}</h1>
-        <TodoInputArea ref="todoInputArea" onClickAddButton={this.addTodoItem.bind(this)} />
+        <TodoInputArea />
         <TodoList
-          todos={this.state.todos}
-          onChangeTodoItem={this.changeTodoItem.bind(this)}
-          onClickRemoveButton={this.onClickRemoveButton.bind(this)}/>
-        <button type='button' onClick={() => {console.log(this.state);}}>Print state</button>
+          todos={this.props.todo.items} />
+        <button type='button' onClick={() => {console.log(this.props.todo);}}>Print state</button>
       </div>
     );
   }
@@ -53,3 +23,7 @@ export default class TodoApp extends Component {
 TodoApp.defaultProps = {
   title: 'Todo'
 }
+
+export default connect((state) => ({
+  todo: state.todo.toJS()
+}))(TodoApp);

@@ -6,7 +6,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <TodoApp title='React Simple Todo App1' />        
+        <TodoApp title='React Simple Todo App1' />
       </div>
     );
   }
