@@ -11,15 +11,15 @@ class App extends Component {
   }
 
   onClickAddButton() {
-    const input_text = this.refs.input_text.value;
-    this.refs.input_text.value = '';
+    const inputText = this.refs.inputText.value;
+    this.refs.inputText.value = '';
 
-    if (input_text === '') {
+    if (inputText === '') {
       alert('You must write todo at least 1 character.');
       return;
     }
 
-    const array = [...this.state.todos, {text: input_text, checked: false}];
+    const array = [...this.state.todos, {text: inputText, checked: false}];
     this.setState({todos: [...array]});
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
       <div className='container'>
         <h1>React Simple Todo App</h1>
         <div className='todo-input-text'>
-          <input type='text' ref='input_text' />
+          <input type='text' ref='inputText' />
           <button type='button' onClick={this.onClickAddButton.bind(this)}>Add</button>
         </div>
         <ul className='todo-list'>
