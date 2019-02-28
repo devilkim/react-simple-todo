@@ -10,7 +10,7 @@ class App extends Component {
     ]
   }
 
-  onClickAddButton() {
+  handleClickAddButton() {
     const inputText = this.refs.inputText.value;
     this.refs.inputText.value = '';
 
@@ -23,13 +23,13 @@ class App extends Component {
     this.setState({todos: [...array]});
   }
 
-  onChangeTodoItem(index) {
+  handleChangeTodoItem(index) {
     const array = [...this.state.todos];
     array[index].checked = !array[index].checked;
     this.setState({todos: [...array]});
   }
 
-  onClickRemoveButton(index) {
+  handleClickRemoveButton(index) {
     const array = [...this.state.todos];
     array.splice(index, 1);
     this.setState({todos: [...array]});
@@ -41,7 +41,7 @@ class App extends Component {
         <h1>React Simple Todo App</h1>
         <div className='todo-input-text'>
           <input type='text' ref='inputText' />
-          <button type='button' onClick={this.onClickAddButton.bind(this)}>Add</button>
+          <button type='button' onClick={this.handleClickAddButton.bind(this)}>Add</button>
         </div>
         <ul className='todo-list'>
           {
@@ -49,9 +49,9 @@ class App extends Component {
                 <li key={index}>
                   <input type='checkbox'
                     checked={item.checked}
-                    onChange={this.onChangeTodoItem.bind(this, index)}/>
+                    onChange={this.handleChangeTodoItem.bind(this, index)}/>
                   {item.text}
-                  <button type='button' onClick={this.onClickRemoveButton.bind(this, index)}>Remove</button>
+                  <button type='button' onClick={this.handleClickRemoveButton.bind(this, index)}>Remove</button>
                 </li>
             ))
           }
