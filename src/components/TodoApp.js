@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TodoActions } from '../store/actionCreators';
-import '../App.css';
+import './Todo.css';
 
 import TodoInputArea from './TodoInputArea';
 import TodoList from './TodoList';
