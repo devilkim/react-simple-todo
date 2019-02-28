@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TodoActions } from '../store/actionCreators';
-import '../App.css';
+import './Todo.css';
 
 export default class TodoInputArea extends Component {
   render() {
