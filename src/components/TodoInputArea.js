@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import './Todo.css';
 
 export default class TodoInputArea extends Component {
   clearInputText() {
