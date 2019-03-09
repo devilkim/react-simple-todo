@@ -44,3 +44,12 @@ npm run server
   ...
 }
 ~~~
+
+## redux-thunk-server
+Redux branch + Redux Thunk + HTTP API.
+
+#### Server run
+#### Changing port
+~~~
+Refer redux-server branch.
+~~~
