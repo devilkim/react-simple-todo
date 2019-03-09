@@ -10,7 +10,7 @@ export default class TodoList extends Component {
         {
           this.props.todos.map((item, index) => (
             <TodoItem
-              key={index} index={index} checked={item.checked} text={item.text}
+              key={index} no={item.no} checked={item.checked} text={item.text}
               />
           ))
         }

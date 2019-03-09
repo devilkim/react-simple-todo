@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { TodoActions } from '../store/actionCreators';
 import './Todo.css';
 
 export default class TodoInputArea extends Component {
+  addTodo = async (text) => {
+    const result = await axios.post('http://localhost:9191/todo', {text});
+    const no = result.data.no;    
+    TodoActions.addTodo({no, text});
+  }
   render() {
     return (
       <div className='todo-input-text'>
@@ -14,7 +20,7 @@ export default class TodoInputArea extends Component {
             return;
           }
           this.refs.inputText.value = '';
-          TodoActions.addTodo({text: inputText});
+          this.addTodo(inputText);
         }}>Add</button>
       </div>
     );

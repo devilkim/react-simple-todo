@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { TodoActions } from '../store/actionCreators';
 import './Todo.css';
@@ -7,6 +8,14 @@ import TodoInputArea from './TodoInputArea';
 import TodoList from './TodoList';
 
 class TodoApp extends Component {
+  constructor(props) {
+    super(props);
+    this.loadTodoList();
+  }
+  loadTodoList = async () => {
+    const result = await axios.get('http://localhost:9191/todos');
+    TodoActions.todoList(result.data.list);
+  }
   render() {
     return (
       <div className='container'>
