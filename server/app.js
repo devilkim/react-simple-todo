@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const list = require('./list');
+const PORT = process.env.PORT;
 
 list.init();
 app.use(cors());
@@ -47,6 +48,6 @@ app.use((err, req, res, next) => {
   res.status(500).json(err);
 });
 
-app.listen(9191, function () {
-  console.log('Example app listening on port 9191!');
+app.listen(PORT, function () {
+  console.log(`Example app listening on port ${PORT}!`);
 });
