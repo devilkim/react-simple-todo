@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { TodoActions } from '../store/actionCreators';
-import { host } from '../config.json';
 import './Todo.css';
 
 import TodoInputArea from './TodoInputArea';
@@ -11,11 +9,7 @@ import TodoList from './TodoList';
 class TodoApp extends Component {
   constructor(props) {
     super(props);
-    this.loadTodoList();
-  }
-  loadTodoList = async () => {
-    const result = await axios.get(host + '/todos');
-    TodoActions.todoList(result.data.list);
+    TodoActions.todoList();
   }
   render() {
     return (

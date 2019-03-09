@@ -1,15 +1,35 @@
 import { createAction, handleActions } from 'redux-actions';
 import { Map, List, fromJS } from 'immutable';
+import axios from 'axios';
+import { host } from '../../config.json';
 
 const TODO_LIST = 'todo/TODO_LIST';
 const ADD_TODO = 'todo/ADD_TODO';
 const CHECK_TODO = 'todo/CHECK_TODO';
 const REMOVE_TODO = 'todo/REMOVE_TODO';
 
-export const todoList = createAction(TODO_LIST);
-export const addTodo = createAction(ADD_TODO);
-export const checkTodo = createAction(CHECK_TODO);
-export const removeTodo = createAction(REMOVE_TODO);
+export const todoList = () => async dispatch => {
+  const result = await axios.get(host + '/todos');
+  dispatch({type: TODO_LIST, payload: result.data.list})
+};
+export const addTodo = (text) => async dispatch => {
+  const result = await axios.post(host + '/todo', {text});
+  const no = result.data.no;
+  dispatch({type: ADD_TODO, payload: {no, text}});
+};
+export const checkTodo = (no) => async dispatch => {
+  const result = await axios.put(host + '/todo/' + no + '/checked');
+  if (result.data.isSuccess) {
+    const checked = result.data.checked;
+    dispatch({type: CHECK_TODO, payload: {no, checked}});
+  }
+};
+export const removeTodo = (no) => async dispatch => {
+  const result = await axios.delete(host + '/todo/' + no);
+  if (result.data.isSuccess) {
+    dispatch({type: REMOVE_TODO, payload: {no}});
+  }
+};
 
 const initialState = Map({
   items: List([])
